@@ -1,3 +1,6 @@
-from django.shortcuts import render
+from django.http import HttpResponse
 
-# Create your views here.
+# Home page, lists all rooms in the READY_TO_JOIN state.
+def index(request):
+  return HttpResponse("Hello, world")
+
