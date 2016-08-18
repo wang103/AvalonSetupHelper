@@ -1,6 +1,6 @@
-<h1>
-{{ room.name }}
-</h1>
+<h3>
+Room Name: {{ room.name }}
+</h3>
 
 {% if error_message %}
   <p><strong>{{ error_message }}</strong></p>
@@ -8,4 +8,19 @@
 
 <p>Number of players: {{ room.num_players }}</p>
 
+<p>Created on: {{ room.created_at_date }}</p>
+
+<form action="{% url 'setup_helper:join_room' room.id %}" method="post">
+  {% csrf_token %}
+
+  Passcode:<br>
+  <input type="password" name="passcode"><br>
+  <br>
+
+  Your name:<br>
+  <input type="text" name="player_name"><br>
+  <br>
+
+  <input type="submit" value="Join" />
+</form>
 
