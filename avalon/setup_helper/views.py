@@ -7,7 +7,7 @@ from .utils import Character, RoomState
 
 # Home page, lists all rooms in the READY_TO_JOIN state.
 def index(request):
-  available_rooms = Room.objects.filter(state=RoomState.new.value).order_by('-updated_at_date')
+  available_rooms = Room.objects.filter(state=RoomState.new.value).order_by('-created_at_date')
   
   context = {
     'available_rooms': available_rooms,
