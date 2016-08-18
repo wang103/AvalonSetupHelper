@@ -1,0 +1,9 @@
+Admin site:
+/admin/
+
+Player (host) starting point:
+/setup_helper/host/
+
+Player (guest) starting point:
+/setup_helper/
+
