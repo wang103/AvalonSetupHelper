@@ -7,7 +7,7 @@ urlpatterns = [
 
   url(r'^(?P<room_id>[0-9]+)/$', views.room_info_before_join, name='room_info_before_join'),
 
-  url(r'^(?P<room_id>[0-9]+)/player/(?<player_token>.+)/$', views.room_info_after_join, name='room_info_after_join'),
+  url(r'^(?P<room_id>[0-9]+)/player/(?P<player_token>.+)/$', views.room_info_after_join, name='room_info_after_join'),
 
   url(r'^(?P<room_id>[0-9]+)/join_room/$', views.join_room, name='join_room'),
 
