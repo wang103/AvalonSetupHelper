@@ -4,7 +4,7 @@ from django.db import models
 
 class Room(models.Model):
   name = models.CharField(max_length=100)
-  num_players = models.IntegerField(min_value=5, max_value=10)
+  num_players = models.IntegerField()
   state = models.IntegerField()
   created_at_date = models.DateTimeField()
   updated_at_date = models.DateTimeField()
