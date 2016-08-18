@@ -1,8 +1,16 @@
+<h3>
+Avalon Game Setup Helper Homepage
+</h3>
+
 {% if available_rooms %}
   <ul>
   {% for room in available_rooms %}
     <li>
       <a href="{% url 'setup_helper:room_info_before_join' room.id %}">{{ room.name }}</a>
+      <br>
+      {{ room.num_players }} player room
+      <br>
+      <br>
     </li>
   {% endfor %}
   </ul>
