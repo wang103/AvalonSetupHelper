@@ -1,8 +1,14 @@
 from django.http import HttpResponse
 
+from .models import Room, Player
+from .utils import Character, RoomState
+
 # Home page, lists all rooms in the READY_TO_JOIN state.
 def index(request):
-  return HttpResponse("Hello, world")
+  available_rooms = Room.objects.filter(state=RoomState.new.value).order_by('-updated_at_date')
+  
+  output = ', '.join([r.name for r in available_rooms])
+  return HttpResponse(output)
 
 # The page player sees before player joins the room.
 def room_info_before_join(request, room_id):
