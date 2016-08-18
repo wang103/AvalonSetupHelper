@@ -6,6 +6,7 @@ from django.utils.encoding import python_2_unicode_compatible
 @python_2_unicode_compatible
 class Room(models.Model):
   name = models.CharField(max_length=100)
+  passcode = models.CharField(max_length=20)
   num_players = models.IntegerField()
   state = models.IntegerField()
   created_at_date = models.DateTimeField()
