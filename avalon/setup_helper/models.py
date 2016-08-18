@@ -10,7 +10,6 @@ class Room(models.Model):
   num_players = models.IntegerField()
   state = models.IntegerField()
   created_at_date = models.DateTimeField()
-  updated_at_date = models.DateTimeField()
 
   def __str__(self):
     return self.name

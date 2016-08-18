@@ -2,5 +2,9 @@
 {{ room.name }}
 </h1>
 
+{% if error_message %}
+  <p><strong>{{ error_message }}</strong></p>
+{% endif %}
+
 <p>Number of players: {{ room.num_players }}</p>
 
