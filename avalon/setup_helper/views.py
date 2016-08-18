@@ -1,4 +1,5 @@
 from django.http import HttpResponse
+from django.template import loader
 
 from .models import Room, Player
 from .utils import Character, RoomState
@@ -7,8 +8,12 @@ from .utils import Character, RoomState
 def index(request):
   available_rooms = Room.objects.filter(state=RoomState.new.value).order_by('-updated_at_date')
   
-  output = ', '.join([r.name for r in available_rooms])
-  return HttpResponse(output)
+  template = loader.get_template('setup_helper/index.html')
+  context = {
+    'available_rooms': available_rooms,
+  }
+
+  return HttpResponse(template.render(context, request))
 
 # The page player sees before player joins the room.
 def room_info_before_join(request, room_id):

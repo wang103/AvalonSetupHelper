@@ -1,1 +1,11 @@
-
+{% if available_rooms %}
+  <ul>
+  {% for room in available_rooms %}
+    <li>
+      <a href="/{{ room.id }}/">{{ room.name }}</a>
+    </li>
+  {% endfor %}
+  </ul>
+{% else %}
+  <p>No game rooms are available at the moment. Please refresh to try again.</p>
+{% endif %}
