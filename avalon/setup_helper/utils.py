@@ -27,3 +27,12 @@ def is_character_included(bit_vector, character):
 def mark_char_as_included(bit_vector, character):
   return bit_vector | (1 << character.value)
 
+def gather_player_knowledge(players, p):
+  knowledge = []
+  if p.character == Character.merlin.value:
+    for player in players:
+      if player.character >= 8:
+        knowledge.append("%s is on the evil side." % (player.name))
+
+  return knowledge
+

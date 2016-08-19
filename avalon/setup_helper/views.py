@@ -122,7 +122,10 @@ def room_info_after_join(request, room_id, player_token):
   }
 
   # If the game is ready to go, add player info to the context.
-
+  if room.state == RoomState.full.value:
+    context['player'] = player
+    context['character'] = Character(player.character).name
+    context['knowledge'] = gather_player_knowledge(existing_players, player)
 
   return render(request, 'setup_helper/room_info_after_join.html', context)
 

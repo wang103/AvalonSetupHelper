@@ -6,10 +6,21 @@ Room Name: {{ room.name }}
 
 <p>Created on: {{ room.created_at_date }}</p>
 
-<p>Existing players: {{ num_existing_players }}</p>
+<p>Joined players: {{ num_existing_players }}</p>
 
 {% if player %}
+  <p>Game has started!</p>
+  <p>{{ player.name }}, your character is {{ character }}</p>
 
+  {% if knowledge %}
+    <br>
+    <p>Your knowledge:</p>
+    <ul>
+    {% for k in knowledge %}
+      <li>{{ k }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
 {% else %}
   <p>
   Not everyone has joined the game yet.<br>
