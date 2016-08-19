@@ -31,8 +31,18 @@ def gather_player_knowledge(players, p):
   knowledge = []
   if p.character == Character.merlin.value:
     for player in players:
-      if player.character >= 8:
+      if player.character >= 8 and player.character != 9:
         knowledge.append("%s is on the evil side." % (player.name))
+
+  elif p.character == Character.percival.value:
+    for player in players:
+      if player.character == 1 or player.character == 10:
+        knowledge.append("%s is Merlin." % (player.name))
+
+  elif p.character >= 8 and p.character != 11:
+    for player in players:
+      if player.character >= 8 and player.character != 11 and player.character != p.character:
+        knowledge.append("%s is on your (evil) side." % (player.name))
 
   return knowledge
 
