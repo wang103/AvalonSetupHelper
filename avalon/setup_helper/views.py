@@ -102,8 +102,29 @@ def join_room(request, room_id):
 
 
 # The page player sees after player joins the room.
-def room_info_after_join(requset, room_id, player_token):
-  return HttpResponse("stub")
+def room_info_after_join(request, room_id, player_token):
+  try:
+    room = Room.objects.get(pk=room_id)
+  except Room.DoesNotExist:
+    raise Http404("Room does not exist")
+
+  try:
+    player = Player.objects.get(room=room, token=player_token)
+  except Player.DoesNotExist:
+    raise Http404("Player does not exist in the room")
+
+  existing_players = room.player_set.all()
+  num_existing_players = existing_players.count()
+
+  context = {
+    'room': room,
+    'num_existing_players': num_existing_players,
+  }
+
+  # If the game is ready to go, add player info to the context.
+
+
+  return render(request, 'setup_helper/room_info_after_join.html', context)
 
 
 

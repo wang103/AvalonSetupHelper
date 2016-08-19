@@ -1,0 +1,19 @@
+<h3>
+Room Name: {{ room.name }}
+</h3>
+
+<p>Number of players: {{ room.num_players }}</p>
+
+<p>Created on: {{ room.created_at_date }}</p>
+
+<p>Existing players: {{ num_existing_players }}</p>
+
+{% if player %}
+
+{% else %}
+  <p>
+  Not everyone has joined the game yet.<br>
+  Please wait for everyone and refresh this page.
+  </p>
+{% endif %}
+
