@@ -23,6 +23,9 @@ class Player(models.Model):
   character = models.IntegerField()
   created_at_date = models.DateTimeField()
 
+  class Meta:
+    unique_together = ('room', 'token')
+
   def __str__(self):
     return self.name
 
