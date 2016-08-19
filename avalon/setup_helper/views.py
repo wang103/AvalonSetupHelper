@@ -1,5 +1,5 @@
 from django.db import transaction
-from django.http import HttpResponse, Http404
+from django.http import HttpResponseRedirect, HttpResponse, Http404
 from django.shortcuts import render
 from django.urls import reverse
 from django.utils import timezone
