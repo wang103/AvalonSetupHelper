@@ -2,14 +2,17 @@
 Room Name: {{ room.name }}
 </h3>
 
-<p>Number of players: {{ room.num_players }}</p>
+<p>
+Number of players: {{ room.num_players }}<br>
+On good side: {{ num_good }}<br>
+On evil side: {{ num_evil }}<br>
+</p>
 
-<p>Created on: {{ room.created_at_date }}</p>
-
-<p>Joined players: {{ num_existing_players }}</p>
+<p>Game created on: {{ room.created_at_date }}</p>
 
 {% if player %}
   <p>Game has started!</p>
+
   <p>{{ player.name }}, your character is {{ character }}</p>
 
   {% if knowledge %}
@@ -22,6 +25,8 @@ Room Name: {{ room.name }}
     </ul>
   {% endif %}
 {% else %}
+  <p>Joined players: {{ num_existing_players }}</p>
+
   <p>
   Not everyone has joined the game yet.<br>
   Please wait for everyone and refresh this page.

@@ -1,5 +1,14 @@
 from enum import Enum
 
+PLAYER_NUMBER_SETUP = {
+  5:  (3, 2),
+  6:  (4, 2),
+  7:  (4, 3),
+  8:  (5, 3),
+  9:  (6, 3),
+  10: (6, 4),
+}
+
 class RoomState(Enum):
   new       = 1
   full      = 2

@@ -118,6 +118,8 @@ def room_info_after_join(request, room_id, player_token):
 
   context = {
     'room': room,
+    'num_good': PLAYER_NUMBER_SETUP[room.num_players][0],
+    'num_evil': PLAYER_NUMBER_SETUP[room.num_players][1],
     'num_existing_players': num_existing_players,
   }
 
