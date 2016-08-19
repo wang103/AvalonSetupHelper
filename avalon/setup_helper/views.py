@@ -1,6 +1,7 @@
 from django.db import transaction
 from django.http import HttpResponse, Http404
 from django.shortcuts import render
+from django.utils import timezone
 from random import choice
 from string import ascii_letters
 
@@ -54,7 +55,8 @@ def join_room(request, room_id):
 
       # Check for max number of players
       existing_players = room.player_set.all()
-      if existing_players.count() >= room.num_players:
+      num_existing_players = existing_players.count()
+      if num_existing_players >= room.num_players:
         error_message = "Room is full"
 
       if error_message != "":
@@ -63,7 +65,11 @@ def join_room(request, room_id):
       # All good.
 
       # Generate a random token for this player.
-      token = ''.join(choice(ascii_letters) for i in range(10))
+      existing_tokens = [x.token for x in existing_players]
+      while True:
+        token = ''.join(choice(ascii_letters) for i in range(10))
+        if token not in existing_tokens:
+          break
 
       # Randomly pick a character for this player.
       char_candidates = set()
@@ -74,10 +80,24 @@ def join_room(request, room_id):
           char_candidates.add(c)
       character = choice(char_candidates)
 
+      player = Player(
+        room=room,
+        name=player_name,
+        token=token,
+        character=character.value,
+        created_at_date=timezone.now()
+      )
+      player.save()
+
+      # Update room state if needed.
+      if num_existing_players + 1 >= room.num_players:
+        room.state = RoomState.full.value
+        room.save()
 
 
-  except Room.DoesNotExist:
-    raise Http404("Room does not exist")
+
+  except Exception:
+    raise Http404("Something went wrong")
 
 
 # The page player sees after player joins the room.
