@@ -36,6 +36,13 @@ def is_character_included(bit_vector, character):
 def mark_char_as_included(bit_vector, character):
   return bit_vector | (1 << character.value)
 
+def all_avail_characters(bit_vector):
+  chars = []
+  for c in Character:
+    if is_character_included(bit_vector, c):
+      chars.append(c.name)
+  return ', '.join(chars)
+
 def gather_player_knowledge(players, p):
   knowledge = []
   if p.character == Character.merlin.value:
