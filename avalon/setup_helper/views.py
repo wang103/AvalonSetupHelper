@@ -1,6 +1,7 @@
 from django.db import transaction
 from django.http import HttpResponse, Http404
 from django.shortcuts import render
+from django.urls import reverse
 from django.utils import timezone
 from random import choice
 from string import ascii_letters
@@ -72,12 +73,12 @@ def join_room(request, room_id):
           break
 
       # Randomly pick a character for this player.
-      char_candidates = set()
+      char_candidates = []
       existing_chars = [Character(x.character) for x in existing_players]
       chars_bit_vector = room.characters_vector
       for c in Character:
         if is_character_included(chars_bit_vector, c) and c not in existing_chars:
-          char_candidates.add(c)
+          char_candidates.append(c)
       character = choice(char_candidates)
 
       player = Player(
@@ -94,10 +95,10 @@ def join_room(request, room_id):
         room.state = RoomState.full.value
         room.save()
 
+      return HttpResponseRedirect(reverse('setup_helper:room_info_after_join', args=(room.id, player.token)))
 
-
-  except Exception:
-    raise Http404("Something went wrong")
+  except Exception as e:
+    raise Http404("Something went wrong: %s" % (e.message))
 
 
 # The page player sees after player joins the room.
