@@ -9,6 +9,7 @@ class Room(models.Model):
   passcode = models.CharField(max_length=20)
   num_players = models.IntegerField()
   state = models.IntegerField()
+  characters_vector = models.IntegerField()
   created_at_date = models.DateTimeField()
 
   def __str__(self):

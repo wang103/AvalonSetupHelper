@@ -1,6 +1,8 @@
 from django.db import transaction
 from django.http import HttpResponse, Http404
 from django.shortcuts import render
+from random import choice
+from string import ascii_letters
 
 from .models import Room, Player
 from .utils import Character, RoomState
@@ -57,6 +59,14 @@ def join_room(request, room_id):
 
       if error_message != "":
         return render(request, 'setup_helper/error.html', { 'error_message': error_message })
+
+      # All good.
+
+      # Generate a random token for this player.
+      token = ''.join(choice(ascii_letters) for i in range(10))
+
+      # Randomly pick a character for this player.
+      char_candidates = set()
 
 
 

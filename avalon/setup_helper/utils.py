@@ -21,3 +21,9 @@ class Character(Enum):
   minion_2        = 13
   minion_3        = 14
 
+def is_character_included(bit_vector, character):
+  return ((bit_vector >> character.value) & 1) != 0
+
+def mark_char_as_included(bit_vector, character):
+  return bit_vector | (1 << character.value)
+
