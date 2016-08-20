@@ -6,4 +6,18 @@ Create a new game room
   <p><strong>{{ error_message }}</strong></p>
 {% endif %}
 
+<form action="{% url 'setup_helper:create_room' %}" method="post">
+  <p>
+    Number of players:
+    <select name="num_players">
+      <option value="5" selected="selected">5</option>
+      <option value="6">6</option>
+      <option value="7">7</option>
+      <option value="8">8</option>
+      <option value="9">9</option>
+      <option value="10">10</option>
+    </select>
+  </p>
+
+</form>
 
