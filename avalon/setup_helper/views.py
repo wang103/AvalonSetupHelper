@@ -136,7 +136,8 @@ def room_info_after_join(request, room_id, player_token):
 
 # Host page, show form to create a new room.
 def host(request):
-  return HttpResponse("You're looking at creating a new room")
+  context = {}
+  return render(request, 'setup_helper/host.html', context)
 
 
 # An action to create a new room.
