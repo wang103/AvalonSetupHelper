@@ -143,8 +143,39 @@ def host(request):
 # An action to create a new room.
 def create_room(request):
   room_name = request.POST['room_name']
-  num_players = request.POST['num_players']
+  num_players_str = request.POST['num_players']
   characters = request.POST.getlist('characters[]')
+
+  error_message = ""
+
+  if not room_name:
+    error_message = "Invalid room name"
+
+  try:
+    num_players = int(num_players_str)
+  except ValueError:
+    error_message = "Invalid number of players"
+
+  if num_players < 5 or num_players > 10:
+    error_message = "Invalid number of players"
+
+  if len(characters) != num_players:
+    error_message = "Incorrect number of characters"
+
+  num_good = PLAYER_NUMBER_SETUP[num_players][0]
+  num_evil = PLAYER_NUMBER_SETUP[num_players][1]
+
+  # Convert characters array into actual Character object array.
+  chars = [Character(int(c_str)) for c_str in characters]
+
+  actual_num_good = num_good_characters(chars)
+  if actual_num_good != num_good:
+    error_message = "Incorrect divide between good and evil"
+
+
+
+  if error_message != "":
+    return render(request, 'setup_helper/error.html', { 'error_message': error_message })
 
   return HttpResponse("stub")
 

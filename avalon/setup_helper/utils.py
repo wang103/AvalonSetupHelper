@@ -30,6 +30,13 @@ class Character(Enum):
   minion_2        = 13
   minion_3        = 14
 
+def num_good_characters(characters):
+  result = 0
+  for c in characters:
+    if c.value < 8:
+      result += 1
+  return result
+
 def is_character_included(bit_vector, character):
   return ((bit_vector >> character.value) & 1) != 0
 
