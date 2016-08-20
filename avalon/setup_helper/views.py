@@ -142,5 +142,9 @@ def host(request):
 
 # An action to create a new room.
 def create_room(request):
+  room_name = request.POST['room_name']
+  num_players = request.POST['num_players']
+  characters = request.POST.getlist('characters[]')
+
   return HttpResponse("stub")
 
