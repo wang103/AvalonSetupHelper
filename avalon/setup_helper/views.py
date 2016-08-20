@@ -51,13 +51,13 @@ def join_room(request, room_id):
         error_message = "Wrong passcode"
 
       # Check of player name
-      if not player_name:
+      if not player_name and not error_message:
         error_message = "Invalid player name"
 
       # Check for max number of players
       existing_players = room.player_set.all()
       num_existing_players = existing_players.count()
-      if num_existing_players >= room.num_players:
+      if num_existing_players >= room.num_players and not error_message:
         error_message = "Room is full"
 
       if error_message != "":
@@ -154,12 +154,13 @@ def create_room(request):
   try:
     num_players = int(num_players_str)
   except ValueError:
+    if not error_message:
+      error_message = "Invalid number of players"
+
+  if (num_players < 5 or num_players > 10) and not error_message:
     error_message = "Invalid number of players"
 
-  if num_players < 5 or num_players > 10:
-    error_message = "Invalid number of players"
-
-  if len(characters) != num_players:
+  if len(characters) != num_players and not error_message:
     error_message = "Incorrect number of characters"
 
   num_good = PLAYER_NUMBER_SETUP[num_players][0]
@@ -169,7 +170,7 @@ def create_room(request):
   chars = [Character(int(c_str)) for c_str in characters]
 
   actual_num_good = num_good_characters(chars)
-  if actual_num_good != num_good:
+  if actual_num_good != num_good and not error_message:
     error_message = "Incorrect divide between good and evil"
 
 
