@@ -8,6 +8,11 @@ Create a new game room
 
 <form action="{% url 'setup_helper:create_room' %}" method="post">
   <p>
+    Room name:
+    <input type="text" name="room_name">
+  </p>
+
+  <p>
     Number of players:
     <select name="num_players">
       <option value="5" selected="selected">5</option>
