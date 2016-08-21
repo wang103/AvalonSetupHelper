@@ -143,6 +143,7 @@ def host(request):
 # An action to create a new room.
 def create_room(request):
   room_name = request.POST['room_name']
+  passcode = request.POST['passcode']
   num_players_str = request.POST['num_players']
   characters = request.POST.getlist('characters[]')
 
@@ -150,6 +151,9 @@ def create_room(request):
 
   if not room_name:
     error_message = "Invalid room name"
+
+  if not passcode and not error_message:
+    error_message = "Invalid passcode"
 
   try:
     num_players = int(num_players_str)
@@ -173,10 +177,29 @@ def create_room(request):
   if actual_num_good != num_good and not error_message:
     error_message = "Incorrect divide between good and evil"
 
+  # Convert Character object array into bit vector.
+  bit_vector = convert_to_bit_vector(chars)
 
+  # In all games, make sure Merlin is included.
+  if not is_character_included(bit_vector, Character.merlin) and not error_message:
+    error_message = "Merlin must be included"
+
+  # In all games, make sure Assasin is included.
+  if not is_character_included(bit_vector, Character.assasin) and not error_message:
+    error_message = "Assasin must be included"
+
+  # In games of 5, if Percival is included, make sure Mordred or Morgana is included.
+  if num_players == 5 and is_character_included(bit_vector, Character.percival) and not error_message:
+    if not is_character_included(bit_vector, Character.mordred) and \
+       not is_character_included(bit_vector, Character.morgana):
+       error_message = "For game of 5 with Percival, must include Mordred or Morgana"
 
   if error_message != "":
     return render(request, 'setup_helper/error.html', { 'error_message': error_message })
+
+  # All good.
+
+
 
   return HttpResponse("stub")
 

@@ -43,6 +43,12 @@ def is_character_included(bit_vector, character):
 def mark_char_as_included(bit_vector, character):
   return bit_vector | (1 << character.value)
 
+def convert_to_bit_vector(characters):
+  bit_vector = 0
+  for c in characters:
+    bit_vector = mark_char_as_included(bit_vector, c)
+  return bit_vector
+
 def all_avail_characters(bit_vector):
   chars = []
   for c in Character:
