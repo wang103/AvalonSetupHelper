@@ -199,7 +199,15 @@ def create_room(request):
 
   # All good.
 
+  room = Room(
+    name=room_name,
+    passcode=passcode,
+    num_players=num_players,
+    state=RoomState.new.value,
+    characters_vector=bit_vector,
+    created_at_date=timezone.now()
+  )
+  room.save()
 
-
-  return HttpResponse("stub")
+  return HttpResponseRedirect(reverse('setup_helper:index', args=()))
 
