@@ -2,6 +2,12 @@
 Avalon Game Setup Helper Homepage
 </h3>
 
+{% if new_room_created %}
+<p>
+  New room created successfully.
+</p>
+{% endif %}
+
 <p>Available game rooms:</p>
 
 {% if available_rooms %}

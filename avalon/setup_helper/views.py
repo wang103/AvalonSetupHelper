@@ -13,9 +13,12 @@ from .utils import *
 # Home page, lists all rooms in the READY_TO_JOIN state.
 def index(request):
   available_rooms = Room.objects.filter(state=RoomState.new.value).order_by('-created_at_date')
-  
+
+  new_room_created = bool(request.GET.get('new', ''))
+
   context = {
     'available_rooms': available_rooms,
+    'new_room_created': new_room_created,
   }
 
   return render(request, 'setup_helper/index.html', context)
@@ -209,5 +212,6 @@ def create_room(request):
   )
   room.save()
 
-  return HttpResponseRedirect(reverse('setup_helper:index', args=()))
+  url = reverse('setup_helper:index', args=()) + '?new=true'
+  return HttpResponseRedirect(url)
 
