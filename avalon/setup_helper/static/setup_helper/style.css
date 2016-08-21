@@ -1,0 +1,13 @@
+.success_text {
+  color: green;
+  font-weight: bold;
+}
+
+.good_side_text {
+  color: #00008B;
+}
+
+.evil_side_text {
+  color: #8B0000;
+}
+

@@ -1,9 +1,13 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'setup_helper/style.css' %}" />
+
 <h3>
 Avalon Game Setup Helper Homepage
 </h3>
 
 {% if new_room_created %}
-<p>
+<p class="success_text">
   New room created successfully.
 </p>
 {% endif %}

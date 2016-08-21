@@ -132,6 +132,7 @@ def room_info_after_join(request, room_id, player_token):
     context['player'] = player
     context['character'] = Character(player.character).name
     context['knowledge'] = gather_player_knowledge(existing_players, player)
+    context['is_good'] = True if player.character < 8 else False
 
   return render(request, 'setup_helper/room_info_after_join.html', context)
 

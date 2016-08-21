@@ -1,20 +1,35 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'setup_helper/style.css' %}" />
+
 <h3>
 Room Name: {{ room.name }}
 </h3>
 
 <p>
 Number of players: {{ room.num_players }}<br>
-On good side: {{ num_good }}<br>
-On evil side: {{ num_evil }}<br>
+On good side: <span class="good_side_text">{{ num_good }}</span><br>
+On evil side: <span class="evil_side_text">{{ num_evil }}</span><br>
 ({{ available_chars }})<br>
 </p>
 
 <p>Game created on: {{ room.created_at_date }}</p>
 
 {% if player %}
-  <p>Game has started!</p>
+  <p class="success_text">
+    Game has started!
+  </p>
 
-  <p>{{ player.name }}, your character is {{ character }}</p>
+  <p>
+    {{ player.name }}, your character is 
+    {% if is_good %}
+      <span class="good_side_text">
+    {% else %}
+      <span class="evil_side_text">
+    {% endif %}
+    {{ character }}
+    </span>
+  </p>
 
   {% if knowledge %}
     <br>
