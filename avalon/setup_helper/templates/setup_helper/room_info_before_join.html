@@ -14,11 +14,11 @@ Room Name: {{ room.name }}
   {% csrf_token %}
 
   Passcode:<br>
-  <input type="password" name="passcode"><br>
+  <input type="password" name="passcode" maxlength="20" required /><br>
   <br>
 
   Your name:<br>
-  <input type="text" name="player_name"><br>
+  <input type="text" name="player_name" maxlength="100" required /><br>
   <br>
 
   <input type="submit" value="Join" />
