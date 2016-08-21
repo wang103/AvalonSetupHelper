@@ -1,3 +1,7 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'setup_helper/style.css' %}" />
+
 <h3>
 Create a new game room
 </h3>
@@ -34,24 +38,24 @@ Create a new game room
   <p>
     You must pick <span id="num_good">?</span> good characters:
   </p>
-  <input type="checkbox" name="characters[]" value="1" checked onclick="return false"> Merlin (required) <br>
-  <input type="checkbox" name="characters[]" value="2"> Percival (make good side stronger) <br>
-  <input type="checkbox" name="characters[]" value="3"> Loyal Servant <br>
-  <input type="checkbox" name="characters[]" value="4"> Loyal Servant <br>
-  <input type="checkbox" name="characters[]" value="5"> Loyal Servant <br>
-  <input type="checkbox" name="characters[]" value="6"> Loyal Servant <br>
-  <input type="checkbox" name="characters[]" value="7"> Loyal Servant <br>
+  <input type="checkbox" name="characters[]" value="1" checked onclick="return false"> <span class="good_side_text">Merlin (required)</span> <br>
+  <input type="checkbox" name="characters[]" value="2"> <span class="good_side_text">Percival (make good side stronger)</span> <br>
+  <input type="checkbox" name="characters[]" value="3"> <span class="good_side_text">Loyal Servant</span> <br>
+  <input type="checkbox" name="characters[]" value="4"> <span class="good_side_text">Loyal Servant</span> <br>
+  <input type="checkbox" name="characters[]" value="5"> <span class="good_side_text">Loyal Servant</span> <br>
+  <input type="checkbox" name="characters[]" value="6"> <span class="good_side_text">Loyal Servant</span> <br>
+  <input type="checkbox" name="characters[]" value="7"> <span class="good_side_text">Loyal Servant</span> <br>
 
   <p>
     You must pick <span id="num_evil">?</span> evil characters:
   </p>
-  <input type="checkbox" name="characters[]" value="8" checked onclick="return false"> Assasin (required) <br>
-  <input type="checkbox" name="characters[]" value="9"> Mordred (make evil side stronger) <br>
-  <input type="checkbox" name="characters[]" value="10"> Morgana (make evil side stronger) <br>
-  <input type="checkbox" name="characters[]" value="11"> Oberon (make evil side weaker) <br>
-  <input type="checkbox" name="characters[]" value="12"> Minion <br>
-  <input type="checkbox" name="characters[]" value="13"> Minion <br>
-  <input type="checkbox" name="characters[]" value="14"> Minion <br>
+  <input type="checkbox" name="characters[]" value="8" checked onclick="return false"> <span class="evil_side_text">Assasin (required)</span> <br>
+  <input type="checkbox" name="characters[]" value="9"> <span class="evil_side_text">Mordred (make evil side stronger)</span> <br>
+  <input type="checkbox" name="characters[]" value="10"> <span class="evil_side_text">Morgana (make evil side stronger)</span> <br>
+  <input type="checkbox" name="characters[]" value="11"> <span class="evil_side_text">Oberon (make evil side weaker)</span> <br>
+  <input type="checkbox" name="characters[]" value="12"> <span class="evil_side_text">Minion</span> <br>
+  <input type="checkbox" name="characters[]" value="13"> <span class="evil_side_text">Minion</span> <br>
+  <input type="checkbox" name="characters[]" value="14"> <span class="evil_side_text">Minion</span> <br>
 
   <br>
   <input type="submit" value="Create" />
