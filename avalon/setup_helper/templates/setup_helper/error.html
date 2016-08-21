@@ -1,10 +1,22 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'setup_helper/style.css' %}" />
+
 <h3>
 Something bad happened
 </h3>
 
-<p>
+<p class="failure_text">
 {{ error_message }}
 </p>
 
-<a href="{% url 'setup_helper:index' %}">homepage</a>
+<br>
+
+<p>
+  <a href="javascript:history.back()">go back</a>
+</p>
+
+<p>
+  <a href="{% url 'setup_helper:index' %}">homepage</a>
+</p>
 

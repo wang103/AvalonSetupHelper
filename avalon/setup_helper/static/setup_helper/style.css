@@ -3,6 +3,11 @@
   font-weight: bold;
 }
 
+.failure_text {
+  color: red;
+  font-weight: bold;
+}
+
 .good_side_text {
   color: #00008B;
 }
