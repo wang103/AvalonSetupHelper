@@ -1,6 +1,7 @@
 # Custom
 *.sqlite3
 *.swp
+production.py
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
